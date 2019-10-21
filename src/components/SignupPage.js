@@ -19,7 +19,7 @@ export default function SignupPage(props) {
             }
         })
         //Authenticating the signup to automatically log in
-        .then(Authenticator.authenticate(event.target['username'].value, event.target['password'].value))
+        .then(Authenticator.authenticate(event.target['username'].value, event.target['password'].value),props.SetUserInfo(event.target['username'].value))
         .then(result =>
           {
             props.loginSuccess();
@@ -30,27 +30,28 @@ export default function SignupPage(props) {
         });
     }
     return (
-        <div>
-        <h1>Sign Up</h1>
-        <div>
-        Please enter an username and password to signup
-        </div>
-
-        <form onSubmit={signup}>
+        <div style={{textAlign: "center"}}>
+            <h1>Sign Up</h1>
             <div>
-                Username <input type="text" name="username" />
+                Please enter an username and password to signup
             </div>
 
-            <div>
-                Password <input type="password" name="password" />
-            </div>
+            <form onSubmit={signup}>
+                <div>
+                    Username <input type="text" name="username" />
+                </div>
 
-            <div>
-            <button type="submit">Signup</button>
-            </div>
-        </form>
-        <br></br>
-        Already have an account? Login <Link to="/">here</Link>
+                <div>
+                    Password <input type="password" name="password" />
+                </div>
+
+                <div>
+                <button type="submit">Signup</button>
+                </div>
+            </form>
+
+            <br></br>
+            Already have an account? Login <Link to="/">here</Link>
 
         </div>
     )

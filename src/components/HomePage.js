@@ -3,7 +3,7 @@ import React from 'react'
 export default function HomePage(props) {
   return (
     <div>
-      <h1>This view is example of a protected view</h1>
+      <h1>Hello {props.UserInfo.username}!</h1>
       <div>
         You should not be able to access this without being logged in
       </div>

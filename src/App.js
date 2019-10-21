@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import SignupPage from './components/SignupPage';
+import NoLoginMap from './components/NoLoginMap';
 import ProtectedRoute from './components/ProtectedRoute';
 import Authenticator from './components/Authenticator';
 import axios from 'axios';
@@ -13,6 +14,7 @@ export default class App extends Component {
   {
     super(props);
     this.state = {
+      UserInfo: null,
       isAuthenticated: false,
       someData: null
     };
@@ -27,9 +29,16 @@ export default class App extends Component {
     console.log("Login failed");
   }
 
+  SetUserInfo = (username) => {
+    this.setState({ UserInfo: {
+      username
+    }});
+  }
+
   /* This function illustrates how some protected API could be accessed */
   loadProtectedData = () => {
-    axios.get(constants.baseAddress + '/hello-protected', Authenticator.getAxiosAuth()).then(results => {
+    axios.get(constants.baseAddress + '/charge-history', Authenticator.getAxiosAuth())
+      .then(results => {
       this.setState({ someData: results.data });
     })
   }
@@ -44,7 +53,7 @@ export default class App extends Component {
             <LoginPage
               loginSuccess = { this.onLogin }
               loginFail = { this.onLoginFail }
-              UserInfo={ this.state.UserInfo }
+              SetUserInfo = { this.SetUserInfo }
               redirectPathOnSuccess="/HomePage"
               {...routeProps}
               />
@@ -55,7 +64,18 @@ export default class App extends Component {
             <SignupPage
               loginSuccess = { this.onLogin }
               loginFail = { this.onLoginFail }
-              UserInfo={ this.state.UserInfo }
+              SetUserInfo = { this.SetUserInfo }
+              redirectPathOnSuccess="/HomePage"
+              {...routeProps}
+              />
+        } />
+
+        <Route path="/NoLoginMap" exact render={
+          (routeProps) =>
+            <NoLoginMap
+              loginSuccess = { this.onLogin }
+              loginFail = { this.onLoginFail }
+              SetUserInfo = { this.SetUserInfo }
               redirectPathOnSuccess="/HomePage"
               {...routeProps}
               />
@@ -65,6 +85,7 @@ export default class App extends Component {
               <HomePage
                 loadProtectedData={ this.loadProtectedData }
                 someData={ this.state.someData }
+                UserInfo={ this.state.UserInfo }
                 />
           }>          
         </ProtectedRoute>

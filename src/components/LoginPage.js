@@ -6,7 +6,8 @@ export default function LoginPage(props) {
 
   function login(event)
   {    
-    event.preventDefault();    
+    event.preventDefault();
+    props.SetUserInfo(event.target['username'].value);    
     Authenticator.authenticate(event.target['username'].value, event.target['password'].value)
       .then(result =>
         {
@@ -19,10 +20,10 @@ export default function LoginPage(props) {
   }
 
   return (
-    <div>
+    <div style={{textAlign: "center"}}>
       <h1>Login</h1>
       <div>
-       Please give your username and password to login
+       Enter your username and password
       </div>
 
       <form onSubmit={login}>
@@ -30,7 +31,7 @@ export default function LoginPage(props) {
           Username <input type="text" name="username" />
         </div>
         <div>
-          Password <input type="text" name="password" />
+          Password <input type="password" name="password" />
         </div>
         <div>
           <button type="submit">Login</button>
@@ -38,7 +39,8 @@ export default function LoginPage(props) {
       </form>
       <br></br>
       Or sign up by clicking <Link to="/SignupPage">here</Link>
-
+      <br></br>
+      You can also view our map without logging in <Link to="/NoLoginMap">here</Link>
     </div>
   )
 }
