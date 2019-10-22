@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import SignupPage from './components/SignupPage';
+import ChargerLocations from './components/ChargerLocations';
+import ChargingPage from './components/ChargingPage';
 import NoLoginMap from './components/NoLoginMap';
 import ProtectedRoute from './components/ProtectedRoute';
 import Authenticator from './components/Authenticator';
@@ -15,6 +17,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       UserInfo: null,
+      ChargerInfo : null,
       isAuthenticated: false,
       someData: null
     };
@@ -30,9 +33,11 @@ export default class App extends Component {
   }
 
   SetUserInfo = (username) => {
-    this.setState({ UserInfo: {
-      username
-    }});
+    this.setState({ UserInfo: { username }});
+  }
+
+  SetCharger = (chargername) => {
+    this.setState({ ChargerInfo: { chargername }});
   }
 
   /* This function illustrates how some protected API could be accessed */
@@ -86,6 +91,24 @@ export default class App extends Component {
                 loadProtectedData={ this.loadProtectedData }
                 someData={ this.state.someData }
                 UserInfo={ this.state.UserInfo }
+                />
+          }>          
+        </ProtectedRoute>
+
+        <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/ChargerLocations" exact render={
+            (routeProps) =>
+              <ChargerLocations
+                UserInfo={ this.state.UserInfo }
+                SetCharger={ this.SetCharger }
+                />
+          }>          
+        </ProtectedRoute>
+
+        <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/ChargingPage" exact render={
+            (routeProps) =>
+              <ChargingPage
+                UserInfo={ this.state.UserInfo }
+                ChargerInfo={ this.state.ChargerInfo }
                 />
           }>          
         </ProtectedRoute>

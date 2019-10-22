@@ -8,7 +8,7 @@ export default function NoLoginMap() {
         <h1>Here are our charging stations</h1>
 
         <br></br>
-        Login to access more functions by clicking <Link to="/">here</Link>
+        Login to access more functions by logging in <Link to="/">here</Link>
       </div>
     )
   }
