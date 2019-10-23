@@ -1,17 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Map from '../components/Map';
 
-export default function NoLoginMap() {
+export default function LoginMap() {
 
     return (
       <div style={{textAlign: "center"}}>
         <h1>Here are our charging stations</h1>
+
         <br></br>
-        <Map 
-        />
-        <br></br>
-        Login to access more functions by clicking <Link to="/">here</Link>
+        
       </div>
     )
   }
