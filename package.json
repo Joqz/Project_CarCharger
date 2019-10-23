@@ -7,6 +7,7 @@
     "passport": "^0.4.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-map-gl": "^5.0.12",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0"
   },
@@ -30,5 +31,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "json-loader": "^0.5.7",
+    "transform-loader": "^0.2.4",
+    "webworkify-webpack": "^1.0.6"
   }
 }
