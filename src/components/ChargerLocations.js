@@ -12,14 +12,6 @@ export default function ChargerLocations(props) {
   return (
     <div>
       <h1>Here are our chargers:</h1> 
-      <form onSubmit={SelectCharger}>
-        <div>
-          Charger <input type="text" name="chargername" />
-        </div>
-        <div>
-        <button type="submit">Submit FORM</button>
-        </div>
-      </form>
 
       <button value="OUL11" onClick={SelectCharger}>OUL11</button>
       <button value="OUL12" onClick={SelectCharger}>OUL12</button>

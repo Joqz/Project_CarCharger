@@ -19,7 +19,8 @@ export default class App extends Component {
       UserInfo: null,
       ChargerInfo : null,
       isAuthenticated: false,
-      someData: null
+      someData: null,
+      ResultData: null
     };
   }  
 
@@ -42,12 +43,11 @@ export default class App extends Component {
 
   /* This function illustrates how some protected API could be accessed */
   loadProtectedData = () => {
-    axios.get(constants.baseAddress + '/charge-history', Authenticator.getAxiosAuth())
+    axios.post(constants.baseAddress + '/getchargehistory',{data: {username: "test123"}}, Authenticator.getAxiosAuth())
       .then(results => {
       this.setState({ someData: results.data });
     })
   }
-
 
   render() {
 
