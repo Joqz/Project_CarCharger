@@ -19,7 +19,7 @@ class Timer extends Component{
       this.timer = setInterval(() => {
         this.setState({
           timerTime: Date.now() - this.state.timerStart,
-          totalPrice: this.state.timerTime * 0.00333
+          totalPrice: this.state.timerTime * 0.00005
         });
       }, 10);
     };
@@ -44,7 +44,6 @@ class Timer extends Component{
       let seconds = ("0" + (Math.floor(timerTime / 1000) % 60)).slice(-2);
       let minutes = ("0" + (Math.floor(timerTime / 60000) % 60)).slice(-2);
       let hours = ("0" + Math.floor(timerTime / 3600000)).slice(-2);
-      let cost = totalPrice;
       return (
         <div>
             <div className="Timer">
@@ -69,7 +68,7 @@ class Timer extends Component{
             </div>
 
             <div>
-                Total cost of your session : {cost}
+                Total cost of your session : {totalPrice}
             </div>
         </div>
       );

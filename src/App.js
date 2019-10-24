@@ -5,7 +5,6 @@ import HomePage from './components/HomePage';
 import SignupPage from './components/SignupPage';
 import ChargerLocations from './components/ChargerLocations';
 import ChargingPage from './components/ChargingPage';
-import GetChargers from './components/GetChargers';
 import NoLoginMap from './components/NoLoginMap';
 import ProtectedRoute from './components/ProtectedRoute';
 import Authenticator from './components/Authenticator';
@@ -20,7 +19,8 @@ export default class App extends Component {
     this.state = {
       Chargers: chargerdata.chargers,
       UserInfo: null,
-      ChargerInfo : null,
+      ChargerInfo: null,
+      TotalPrice: null,
       SearchFilter: "",
       isAuthenticated: false,
       someData: null
@@ -44,8 +44,8 @@ export default class App extends Component {
     this.setState({ UserInfo: { username }});
   }
 
-  SetCharger = (chargername) => {
-    this.setState({ ChargerInfo: { chargername }});
+  GetChargerInfo = (ChargerId) => {
+    return this.state.Chargers.find(item => item.id === ChargerId);
   }
 
   /* This function illustrates how some protected API could be accessed */
@@ -92,6 +92,7 @@ export default class App extends Component {
               {...routeProps}
               />
         } />
+
         <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/HomePage" exact render={
             (routeProps) =>
               <HomePage
@@ -109,18 +110,18 @@ export default class App extends Component {
                 Chargers={ this.state.Chargers }
                 SearchFilter={ this.state.SearchFilter }
                 SearchFilterUpdate={ this.SearchFilterUpdate }
-                SetCharger={ this.SetCharger }
                 />
           }>          
         </ProtectedRoute>
 
-        <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/ChargingPage" exact render={
-            (routeProps) =>
-              <ChargingPage
+        <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/charger/:id" exact render={
+            routeProps =>
+              <ChargingPage {...routeProps}
                 SetPrice = { this.SetPrice }
                 TotalPrice = { this.state.TotalPrice }
                 UserInfo= { this.state.UserInfo }
                 ChargerInfo= { this.state.ChargerInfo }
+                GetChargerInfo ={this.GetChargerInfo}
                 />
           }>          
         </ProtectedRoute>
