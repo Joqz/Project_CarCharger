@@ -4,7 +4,9 @@
         "id": 1,
         "name": "OULU11",
         "location": "OULU",
+        "station": "KAUKOVAINIO",
         "type": "FAST CHARGER",
+        "chargingspeed": "50-150kW",
         "price": 18,
         "price_per": "cents/kWh"
       },
@@ -12,7 +14,9 @@
         "id": 2,
         "name": "OULU12",
         "location": "OULU",
+        "station": "KAUKOVAINIO",
         "type": "FAST CHARGER",
+        "chargingspeed": "50-150kW",
         "price": 18,
         "price_per": "cents/kWh"
       },
@@ -20,17 +24,31 @@
         "id": 3,
         "name": "OULU21",
         "location": "OULU",
+        "station": "KAUKOVAINIO",
         "type": "STANDARD",
+        "chargingspeed": "22kW",
         "price": 0.2,
         "price_per": "e/min"
       },
       {
         "id": 4,
-        "name": "OULU21",
+        "name": "OULU22",
         "location": "OULU",
+        "station": "KAUKOVAINIO",
         "type": "STANDARD",
+        "chargingspeed": "22kW",
         "price": 0.2,
         "price_per": "e/min"
+      },
+      {
+        "id": 5,
+        "name": "OULU23",
+        "location": "OULU",
+        "station": "KAUKOVAINIO",
+        "type": "STANDARD",
+        "chargingspeed": "22kW",
+        "price": "FREE",
+        "price_per": ""
       }
     ]
   }
