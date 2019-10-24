@@ -9,7 +9,7 @@ export default function SignupPage(props) {
 
     function signup(event) {
         event.preventDefault();  
-        // Send a POST request
+        // Sending a POST request
         axios({
             method: 'post',
             url: constants.baseAddress + '/users/',

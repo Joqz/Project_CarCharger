@@ -3,18 +3,25 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginPage from './components/LoginPage';
 import HomePage from './components/HomePage';
 import SignupPage from './components/SignupPage';
+import ChargerLocations from './components/ChargerLocations';
+import ChargingPage from './components/ChargingPage';
+import GetChargers from './components/GetChargers';
 import NoLoginMap from './components/NoLoginMap';
 import ProtectedRoute from './components/ProtectedRoute';
 import Authenticator from './components/Authenticator';
 import axios from 'axios';
 import constants from './constants.json';
+import chargerdata from './chargerdata.json';
 
 export default class App extends Component {
   constructor(props)
   {
     super(props);
     this.state = {
+      Chargers: chargerdata.chargers,
       UserInfo: null,
+      ChargerInfo : null,
+      SearchFilter: "",
       isAuthenticated: false,
       someData: null
     };
@@ -29,20 +36,25 @@ export default class App extends Component {
     console.log("Login failed");
   }
 
+  SearchFilterUpdate = (newValue) => {
+    this.setState({ SearchFilter: newValue });
+  }
+
   SetUserInfo = (username) => {
-    this.setState({ UserInfo: {
-      username
-    }});
+    this.setState({ UserInfo: { username }});
+  }
+
+  SetCharger = (chargername) => {
+    this.setState({ ChargerInfo: { chargername }});
   }
 
   /* This function illustrates how some protected API could be accessed */
   loadProtectedData = () => {
-    axios.get(constants.baseAddress + '/charge-history', Authenticator.getAxiosAuth())
+    axios.post(constants.baseAddress + '/getchargehistory', {params: {username: "test123"}}, Authenticator.getAxiosAuth())
       .then(results => {
       this.setState({ someData: results.data });
     })
   }
-
 
   render() {
 
@@ -86,6 +98,29 @@ export default class App extends Component {
                 loadProtectedData={ this.loadProtectedData }
                 someData={ this.state.someData }
                 UserInfo={ this.state.UserInfo }
+                />
+          }>          
+        </ProtectedRoute>
+
+        <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/ChargerLocations" exact render={
+            (routeProps) =>
+              <ChargerLocations
+                UserInfo={ this.state.UserInfo }
+                Chargers={ this.state.Chargers }
+                SearchFilter={ this.state.SearchFilter }
+                SearchFilterUpdate={ this.SearchFilterUpdate }
+                SetCharger={ this.SetCharger }
+                />
+          }>          
+        </ProtectedRoute>
+
+        <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/ChargingPage" exact render={
+            (routeProps) =>
+              <ChargingPage
+                SetPrice = { this.SetPrice }
+                TotalPrice = { this.state.TotalPrice }
+                UserInfo= { this.state.UserInfo }
+                ChargerInfo= { this.state.ChargerInfo }
                 />
           }>          
         </ProtectedRoute>

@@ -1,6 +1,8 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 
 export default function HomePage(props) {
+
   return (
     <div>
       <h1>Hello {props.UserInfo.username}!</h1>
@@ -12,6 +14,9 @@ export default function HomePage(props) {
       </div>
       <div style={{ color: "red" }}>
         Protected content result: <strong>{ props.someData }</strong>
+      </div>
+      <div>
+        <Link to="/ChargerLocations">Show charger locations</Link>
       </div>
       
     </div>
