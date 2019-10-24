@@ -19,7 +19,7 @@ class Timer extends Component{
       this.timer = setInterval(() => {
         this.setState({
           timerTime: Date.now() - this.state.timerStart,
-          totalPrice: this.state.timerTime * 1.23
+          totalPrice: this.state.timerTime * 0.00333
         });
       }, 10);
     };

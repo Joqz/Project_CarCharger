@@ -1,0 +1,36 @@
+{
+    "chargers": [
+      {
+        "id": 1,
+        "name": "OULU11",
+        "location": "OULU",
+        "type": "FAST CHARGER",
+        "price": 18,
+        "price_per": "cents/kWh"
+      },
+      {
+        "id": 2,
+        "name": "OULU12",
+        "location": "OULU",
+        "type": "FAST CHARGER",
+        "price": 18,
+        "price_per": "cents/kWh"
+      },
+      {
+        "id": 3,
+        "name": "OULU21",
+        "location": "OULU",
+        "type": "STANDARD",
+        "price": 0.2,
+        "price_per": "e/min"
+      },
+      {
+        "id": 4,
+        "name": "OULU21",
+        "location": "OULU",
+        "type": "STANDARD",
+        "price": 0.2,
+        "price_per": "e/min"
+      }
+    ]
+  }

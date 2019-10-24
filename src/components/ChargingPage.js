@@ -7,14 +7,15 @@ export default function ChargingPage(props) {
   function PayCharge(event)
   {    
     event.preventDefault();
+
     axios({
       method: 'post',
       url: constants.baseAddress + '/chargehistory',
       data: {
-      chargehistory: props.ChargerInfo.chargername,
-      username: props.UserInfo.username
-      }
-  })
+              chargehistory: props.ChargerInfo.chargername,
+              username: props.UserInfo.username
+            }
+    });
   }
 
   return (
@@ -26,7 +27,7 @@ export default function ChargingPage(props) {
       </div>      
 
       <div>
-        <Timer />
+        <Timer/>
       </div>
 
       <button onClick={PayCharge}>Pay your charge</button>
