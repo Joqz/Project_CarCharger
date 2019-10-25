@@ -7,6 +7,22 @@ const MAPBOX_TOKEN = 'pk.eyJ1IjoibGFyZGVoeCIsImEiOiJjazIyYnU2OXUxaG9pM21tdjA5cjZ
 //This is just a static view of the map with charger stations included
 export default function Map(){
 
+  function RedirectOulu(){
+    console.log("testoulu")
+  }
+
+  function RedirectHelsinki(){
+    console.log("testhelsinki")
+  }
+
+  function RedirectVaasa(){
+    console.log("testvaasa")
+  }
+
+  function RedirectTampere(){
+    console.log("testtampere")
+  }
+
   return(
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center"}}>
       <ReactMapGL
@@ -18,10 +34,10 @@ export default function Map(){
         longitude={24.9}
         zoom={4.2}>
           
-          <Marker color="red" latitude={65} longitude={25}><div style={{color:"red"}} onClick={console.log("You clicked me!")}>5 stations</div></Marker>
-          <Marker color="red" latitude={60.5} longitude={25}><div style={{color:"red"}}>8 stations</div></Marker>
-          <Marker color="red" latitude={63.3} longitude={21.6}><div style={{color:"red"}}>4 stations</div></Marker>
-          <Marker color="red" latitude={61.7} longitude={23.9}><div style={{color:"red"}}>5 stations</div></Marker>
+          <Marker color="red" latitude={65} longitude={25}><div style={{color:"red"}} onClick={RedirectOulu}>5 stations</div></Marker>
+          <Marker color="red" latitude={60.5} longitude={25}><div style={{color:"red"}} onClick={RedirectHelsinki}>8 stations</div></Marker>
+          <Marker color="red" latitude={63.3} longitude={21.6}><div style={{color:"red"}} onClick={RedirectVaasa}>4 stations</div></Marker>
+          <Marker color="red" latitude={61.7} longitude={23.9}><div style={{color:"red"}} onClick={RedirectTampere}>5 stations</div></Marker>
 
         </ReactMapGL>
 

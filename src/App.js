@@ -11,7 +11,7 @@ import Authenticator from './components/Authenticator';
 import axios from 'axios';
 import constants from './constants.json';
 import chargerdata from './chargerdata.json';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import {Marker} from 'react-map-gl';
 
 export default class App extends Component {
   constructor(props)
@@ -35,6 +35,10 @@ export default class App extends Component {
   onLoginFail = () => {
     this.setState({ isAuthenticated: false });
     console.log("Login failed");
+  }
+
+  onLogout = () => {
+    this.setState({ isAuthenticated: false});
   }
 
   SearchFilterUpdate = (newValue) => {
@@ -63,7 +67,6 @@ export default class App extends Component {
     })
   }
 
-  /* This function illustrates how some protected API could be accessed */
   GetChargeHistory = () => {
     axios.post(constants.baseAddress + '/getchargehistory', {params: {username: "test123"}}, Authenticator.getAxiosAuth())
       .then(results => {
@@ -134,6 +137,7 @@ export default class App extends Component {
                 UserInfo= { this.state.UserInfo }
                 ChargerInfo= { this.state.ChargerInfo }
                 GetChargerInfo ={this.GetChargerInfo}
+                redirectPathOnSuccess="/HomePage"
                 />
           }>          
         </ProtectedRoute>

@@ -7,7 +7,7 @@ export default function ChargerLocations(props) {
 
   function UpdateSearchFilter(event)
   {
-    props.SearchFilterUpdate(event.target.value)
+    props.SearchFilterUpdate(event.target.value.toUpperCase())
   }
 
   return (
@@ -17,15 +17,15 @@ export default function ChargerLocations(props) {
 
       <div>
         <input type="text" onChange={ UpdateSearchFilter }/>
+        <div style={{ display: "flex", flexWrap: "wrap"}}>
         {
         props.Chargers
           .filter(item => item.name.includes(props.SearchFilter) || item.type.includes(props.SearchFilter))
           .map(item => <GetChargers key={item.id} {...item}/>
           )
         }
+        </div>
       </div>
-
-      <Link to='/ChargingPage'>Submit</Link>
     </div>
   )
 }

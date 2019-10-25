@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function SearchResult(props) {
 
     return (
-        <div>
+        <div style={{ padding: "50px", display: "flex"}}>
             <Link to={ `/charger/${props.id}` }>
                 <div>
                     <div>{ props.name }</div>

@@ -1,8 +1,10 @@
 import React from 'react';
 import Timer from './Timer';
+import FastTimer from './FastTimer';
+import FreeTimer from './FreeTimer';
 import axios from 'axios';
 import constants from '../constants.json';
-import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 export default function ChargingPage(props) {
 
@@ -12,14 +14,32 @@ export default function ChargingPage(props) {
   {    
     event.preventDefault();
     axios({
-      method: 'post',
-      url: constants.baseAddress + '/chargehistory',
-      data: {
-              chargehistory: Charger.name,
-              username: props.UserInfo.username
-            }
-    });
-    this.props.history.push('./HomePage')
+          method: 'post',
+          url: constants.baseAddress + '/chargehistory',
+          data: {
+                  chargehistory: Charger.name,
+                  username: props.UserInfo.username
+                }
+        });
+    props.history.push(props.redirectPathOnSuccess);
+  }
+
+  function SelectTimer(){
+    if(Charger.type === "FAST CHARGER"){
+      return(
+        <div><FastTimer/></div>
+      ) 
+    }
+    else if(Charger.price === "FREE"){
+      return(
+        <div><FreeTimer/></div>
+      ) 
+    }
+    else{
+      return(
+        <div><Timer/></div>
+      ) 
+    }
   }
 
   return (
@@ -33,9 +53,7 @@ export default function ChargingPage(props) {
 
       <br></br>
 
-      <div>
-        <Timer/>
-      </div>
+      {SelectTimer()}
 
       <div>
         <button onClick={PayCharge}>Pay for your charge</button>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Timer extends Component{
+class FreeTimer extends Component{
     state = {
       timerOn: false,
       timerStart: 0,
@@ -32,7 +32,6 @@ class Timer extends Component{
       let seconds = ("0" + (Math.floor(timerTime / 1000) % 60)).slice(-2);
       let minutes = ("0" + (Math.floor(timerTime / 60000) % 60)).slice(-2);
       let hours = ("0" + Math.floor(timerTime / 3600000)).slice(-2);
-      let totalPrice = ((timerTime / 60000) * 0.2).toFixed(4);
       let totalkWh = ((timerTime / 3600000) * 22).toFixed(4);
       return (
         <div>
@@ -55,7 +54,6 @@ class Timer extends Component{
             </div>
 
             <div>
-                Total cost of your session : <div>{totalPrice}</div>
                 Total amount charged : <div>{totalkWh}</div>
             </div>
         </div>
@@ -63,4 +61,4 @@ class Timer extends Component{
     }
   }
   
-  export default Timer;
+  export default FreeTimer;
