@@ -11,7 +11,7 @@ export default function NoLoginMap() {
         <Map 
         />
         <br></br>
-        Login to access more functions by logging in <Link to="/">here</Link>
+        Login to access more functions <Link to="/">here</Link>
       </div>
     )
   }

@@ -1,24 +1,32 @@
 import React from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import MapGL from 'react-map-gl';
+import ReactMapGL, {Marker} from 'react-map-gl';
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoibGFyZGVoeCIsImEiOiJjazIyYnU2OXUxaG9pM21tdjA5cjZoN2RmIn0.I-NQ3T2UkGAac6tHq4UqYA'; // Set your mapbox token here
 
 //This is just a static view of the map with charger stations included
 export default function Map(){
-    return(
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"center"}}>
-        <MapGL
+
+  return(
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center"}}>
+      <ReactMapGL
         width={"80%"}
         height={500}
         mapStyle="mapbox://styles/mapbox/light-v9"
         mapboxApiAccessToken={MAPBOX_TOKEN}
         latitude={64}
         longitude={24.9}
-        zoom={4.2}
-        />
-        </div>
-    )
+        zoom={4.2}>
+          
+          <Marker color="red" latitude={65} longitude={25}><div style={{color:"red"}} onClick={console.log("You clicked me!")}>5 stations</div></Marker>
+          <Marker color="red" latitude={60.5} longitude={25}><div style={{color:"red"}}>8 stations</div></Marker>
+          <Marker color="red" latitude={63.3} longitude={21.6}><div style={{color:"red"}}>4 stations</div></Marker>
+          <Marker color="red" latitude={61.7} longitude={23.9}><div style={{color:"red"}}>5 stations</div></Marker>
+
+        </ReactMapGL>
+
+      </div>
+  )
 
 }
 

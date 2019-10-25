@@ -27,15 +27,7 @@ class Timer extends Component{
     stopTimer = () => {
       this.setState({ timerOn: false });
       clearInterval(this.timer);
-    };
-  
-    resetTimer = () => {
-      this.setState({
-        timerStart: 0,
-        timerTime: 0,
-        totalPrice: 0
-      });
-    };
+    };  
   
     render() {
       const { timerTime } = this.state;
@@ -62,13 +54,10 @@ class Timer extends Component{
                 {this.state.timerOn === false && this.state.timerTime > 0 && (
                     <button onClick={this.startTimer}>Resume Charging</button>
                 )}
-                {this.state.timerOn === false && this.state.timerTime > 0 && (
-                    <button onClick={this.resetTimer}>Reset Charger</button>
-                )}
             </div>
 
             <div>
-                Total cost of your session : {totalPrice}
+                Total cost of your session : <div>{totalPrice}</div>
             </div>
         </div>
       );

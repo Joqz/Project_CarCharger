@@ -11,7 +11,7 @@ export default function ChargerLocations(props) {
   }
 
   return (
-    <div>
+    <div style={{textAlign: "center"}}>
 
       <h1>Here are our chargers:</h1> 
 
