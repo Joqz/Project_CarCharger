@@ -2,19 +2,19 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 
 export default function HomePage(props) {
-
   return (
-    <div>
+    <div style={{textAlign: "center"}}>
+
       <h1>Hello {props.UserInfo.username}!</h1>
+
       <div>
-        You should not be able to access this without being logged in
+        <button onClick={ props.GetChargeHistory }>Show my charge history</button>        
       </div>
-      <div>
-        <button onClick={ props.loadProtectedData }>Click to load protected content from API</button>        
-      </div>
+
       <div style={{ color: "red" }}>
-        Protected content result: <strong>{ props.someData }</strong>
+        <strong>{ props.ChargeHistory }</strong>
       </div>
+
       <div>
         <Link to="/ChargerLocations">Show charger locations</Link>
       </div>

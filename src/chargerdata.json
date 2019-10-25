@@ -8,7 +8,9 @@
         "type": "FAST CHARGER",
         "chargingspeed": "50-150kW",
         "price": 18,
-        "price_per": "cents/kWh"
+        "price_per": "cents/kWh",
+        "latitude": "65.01236",
+        "longitude": "25.46816"
       },
       {
         "id": 2,
@@ -18,7 +20,9 @@
         "type": "FAST CHARGER",
         "chargingspeed": "50-150kW",
         "price": 18,
-        "price_per": "cents/kWh"
+        "price_per": "cents/kWh",
+        "latitude": "65.01236",
+        "longitude": "25.46816"
       },
       {
         "id": 3,
@@ -28,7 +32,9 @@
         "type": "STANDARD",
         "chargingspeed": "22kW",
         "price": 0.2,
-        "price_per": "e/min"
+        "price_per": "e/min",
+        "latitude": "65.01236",
+        "longitude": "25.46816"
       },
       {
         "id": 4,
@@ -38,7 +44,9 @@
         "type": "STANDARD",
         "chargingspeed": "22kW",
         "price": 0.2,
-        "price_per": "e/min"
+        "price_per": "e/min",
+        "latitude": "65.01236",
+        "longitude": "25.46816"
       },
       {
         "id": 5,
@@ -48,7 +56,9 @@
         "type": "STANDARD",
         "chargingspeed": "22kW",
         "price": "FREE",
-        "price_per": ""
+        "price_per": "",
+        "latitude": "65.01236",
+        "longitude": "25.46816"
       }
     ]
   }

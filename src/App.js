@@ -11,6 +11,7 @@ import Authenticator from './components/Authenticator';
 import axios from 'axios';
 import constants from './constants.json';
 import chargerdata from './chargerdata.json';
+import ReactMapGL, {Marker} from 'react-map-gl';
 
 export default class App extends Component {
   constructor(props)
@@ -23,7 +24,7 @@ export default class App extends Component {
       TotalPrice: null,
       SearchFilter: "",
       isAuthenticated: false,
-      someData: null
+      ChargeHistory: null
     };
   }  
 
@@ -44,15 +45,29 @@ export default class App extends Component {
     this.setState({ UserInfo: { username }});
   }
 
+  SetChargerInfo = (chargerprice) => {
+    this.setState({ ChargerInfo: { chargerprice }});
+  }
+
   GetChargerInfo = (ChargerId) => {
     return this.state.Chargers.find(item => item.id === ChargerId);
   }
 
+  ChargerMarkers = () =>{
+    return this.state.Chargers.map((Chargers, index) => {
+    return <Marker key={index} id={index} position={{
+    latitude: this.Chargers.latitude,
+    longitude: this.Chargers.longitude
+    }}
+    onClick={() => console.log("You clicked me!")} />
+    })
+  }
+
   /* This function illustrates how some protected API could be accessed */
-  loadProtectedData = () => {
+  GetChargeHistory = () => {
     axios.post(constants.baseAddress + '/getchargehistory', {params: {username: "test123"}}, Authenticator.getAxiosAuth())
       .then(results => {
-      this.setState({ someData: results.data });
+      this.setState({ ChargeHistory: results.data });
     })
   }
 
@@ -85,10 +100,6 @@ export default class App extends Component {
         <Route path="/NoLoginMap" exact render={
           (routeProps) =>
             <NoLoginMap
-              loginSuccess = { this.onLogin }
-              loginFail = { this.onLoginFail }
-              SetUserInfo = { this.SetUserInfo }
-              redirectPathOnSuccess="/HomePage"
               {...routeProps}
               />
         } />
@@ -96,8 +107,8 @@ export default class App extends Component {
         <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/HomePage" exact render={
             (routeProps) =>
               <HomePage
-                loadProtectedData={ this.loadProtectedData }
-                someData={ this.state.someData }
+                GetChargeHistory={ this.GetChargeHistory }
+                ChargeHistory={ this.state.ChargeHistory }
                 UserInfo={ this.state.UserInfo }
                 />
           }>          
@@ -118,6 +129,7 @@ export default class App extends Component {
             routeProps =>
               <ChargingPage {...routeProps}
                 SetPrice = { this.SetPrice }
+                Chargers={ this.state.Chargers }
                 TotalPrice = { this.state.TotalPrice }
                 UserInfo= { this.state.UserInfo }
                 ChargerInfo= { this.state.ChargerInfo }
