@@ -38,11 +38,11 @@ export default function SignupPage(props) {
 
             <form onSubmit={signup}>
                 <div>
-                    Username <input type="text" name="username" />
+                    Username <input type="text" name="username" /> (>4 characters)
                 </div>
 
                 <div>
-                    Password <input type="password" name="password" />
+                    Password <input type="password" name="password" /> (>6 characters)
                 </div>
 
                 <div>
